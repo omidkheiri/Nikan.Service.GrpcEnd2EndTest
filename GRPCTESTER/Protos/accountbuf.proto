@@ -1,0 +1,56 @@
+syntax = "proto3";
+import "google/protobuf/duration.proto";  
+import "google/protobuf/timestamp.proto";
+option csharp_namespace = "Nikan.Services.Reports.WebApi.Adaptors.AccountAdaptor";
+
+package accountbuf;
+service AccountService {
+  // Sends an AddAccount
+  rpc AddAccount (AddAccountRequest) returns (AddAccountReply);
+  rpc SetAccountIsSupplier (SetAccountIsSupplierRequest) returns (SetAccountIsSupplierResponse);
+  rpc SetAccountIsCustomer (SetAccountIsCustomerRequest) returns (SetAccountIsCustomerResponse);
+}
+
+
+
+message SetAccountIsSupplierRequest {
+   
+  string AccountId=1;
+  string CompanyId=2;
+  bool IsSupplier =3;
+}
+message SetAccountIsSupplierResponse {
+   
+  string message=1;
+}
+message SetAccountIsCustomerRequest {
+   
+  string AccountId=1;
+  string CompanyId=2;
+  bool IsCustomer =3;
+}
+message SetAccountIsCustomerResponse {
+   
+  string message=1;
+}
+
+
+ message AddAccountRequest {
+  
+  string CompanyId =1;// TODO : Correct the crm.profiel
+  string AccountId=2;
+  int32 AccountNumber =3;
+  string Title =4;
+  string Phone =5;
+  string EmailAddress =6;
+  string PostalAddress =7;
+  google.protobuf.Timestamp DateCreated =8;
+  google.protobuf.Timestamp DateModified =9;
+  string CreatedById =10;
+  string CreatedBy =11;
+  bool IsCustomer =12;
+  bool IsSupplier =13;
+}
+message AddAccountReply {
+  string message = 1;
+}
